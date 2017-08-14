@@ -18,11 +18,16 @@
 require([
   "esri/Map",
   "esri/views/SceneView",
+  "esri/layers/TileLayer",
   "dojo/domReady!"
 ], function(Map, SceneView){
+  var weatherLayer = new TileLayer({
+    url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
+  })
   var map = new Map({
     basemap: "streets",
     ground: "world-elevation"
+	layers: [weatherLayer]
   });
   var view = new SceneView({
     container: "viewDiv",     // Reference to the scene div created in step 5
