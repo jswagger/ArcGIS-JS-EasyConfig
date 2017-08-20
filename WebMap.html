@@ -27,9 +27,10 @@
 		"esri/layers/FeatureLayer",
 		"esri/widgets/BasemapToggle",
 		"esri/widgets/Legend",
+		"esri/widgets/Search",
         "dojo/domReady!"
       ],
-    function(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend) {
+    function(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search) {
    
         var weatherLayer = new MapImageLayer({
 		  url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
@@ -68,10 +69,18 @@
               layer: featureLayer1,
               title: "Public Places"
             }]
-          });
+        });
+		
+		var searchWidget = new Search({
+            view: view
+        });
 		map.add(featureLayer1);
-		view.ui.add(toggle, "top-right");
+		view.ui.add(toggle, "bottom-left");
 		view.ui.add(legend, "bottom-right");
+		view.ui.add(searchWidget, {
+		    position: "top-right",
+			index: 2
+		});
     });
   </script>
 </head>
