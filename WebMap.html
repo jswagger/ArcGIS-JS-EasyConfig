@@ -24,38 +24,39 @@
         "esri/Map",
         "esri/views/SceneView",
         "esri/layers/MapImageLayer",
-		    "esri/widgets/BasemapToggle",
+		"esri/widgets/BasemapToggle",
         "dojo/domReady!"
       ],
-      function(
-        Map, SceneView, MapImageLayer, BasemapToggle
-      ) {
-
+    function(Map, SceneView, MapImageLayer, BasemapToggle) {
    
         var weatherLayer = new MapImageLayer({
-         url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
+		  url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
         });
-
-        var map = new Map({
+		
+		var elevationLayer = new MapImageLayer({
+		  url: "https://services.nationalmap.gov/arcgis/rest/services/Contours/MapServer"
+		});
+		
+		var publicPlaces = new MapImageLayer({
+		  url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+        });
+		
+		var map = new Map({
           basemap: "dark-gray",
-          layers: [weatherLayer]
+          layers: [weatherLayer, elevationLayer, publicPlaces]
         });
 
         var view = new SceneView({
           container: "viewDiv",
           map: map
         });
-		    var toggle = new BasemapToggle({
+		var toggle = new BasemapToggle({
           view: view, 
           nextBasemap: "hybrid" 
         });
    
-        weatherLayer.then(function() {
-          view.goTo(weatherLayer.fullExtent);
-        });
-		
-		    view.ui.add(toggle, "top-right");
-      });
+		view.ui.add(toggle, "top-right");
+    });
   </script>
 </head>
 
