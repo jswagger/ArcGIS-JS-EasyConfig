@@ -13,25 +13,29 @@
         var configData = readConfigFile("C:\Users\StandardAdmin\Documents\GitHub\ArcGIS - JS - EasyConfig\mapConfigData.json", function (text) {
             return JSON.parse(text);
         });
+        var layersForMap = [];
+        for (i = 0; i < configData.length; i++) {
+            layersForMap += configData.mapLayers[i];
+        }
 
-        var weatherLayer = new MapImageLayer({
-            url: configData.Layer1.url
-        });
+        //var weatherLayer = new MapImageLayer({
+        //    url: configData.Layer1.url
+        //});
 
-        var elevationLayer = new MapImageLayer({
-            url: configData.Layer2.url
-        });
+        //var elevationLayer = new MapImageLayer({
+        //    url: configData.Layer2.url
+        //});
 
-        var publicPlaces = new MapImageLayer({
-            url: configData.Layer2.url
-        });
+        //var publicPlaces = new MapImageLayer({
+        //    url: configData.Layer2.url
+        //});
         var featureLayer1 = new FeatureLayer({
             url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer/0"
         });
 
         var map = new Map({
             basemap: "dark-gray",
-            layers: [weatherLayer, elevationLayer, publicPlaces]
+            layers: layersForMap
         });
 
         var view = new SceneView({
