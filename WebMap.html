@@ -6,7 +6,9 @@
   <title>Configurable 3D Map</title>
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  /**<link rel="stylesheet" href="C:\Users\StandardAdmin\Documents\GitHub\ArcGIS-JS-EasyConfig\WebMapStyle.css">
   <script src="https://js.arcgis.com/4.4/"></script>
+  /**<script src="C:\Users\StandardAdmin\Documents\GitHub\ArcGIS-JS-EasyConfig\WebMapStyle.css"></script>
 
   <style>
     html,
@@ -28,9 +30,10 @@
 		"esri/widgets/BasemapToggle",
 		"esri/widgets/Legend",
 		"esri/widgets/Search",
+		"esri/widgets/LayerList",
         "dojo/domReady!"
       ],
-    function(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search) {
+    function(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList) {
    
         var weatherLayer = new MapImageLayer({
 		  url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
@@ -74,6 +77,10 @@
 		var searchWidget = new Search({
             view: view
         });
+		
+		var layerList = new LayerList({
+            view: view
+        });
 		map.add(featureLayer1);
 		view.ui.add(toggle, "bottom-left");
 		view.ui.add(legend, "bottom-right");
@@ -81,6 +88,9 @@
 		    position: "top-right",
 			index: 2
 		});
+		view.ui.add(layerList, {
+            position: "top-left"
+        });
     });
   </script>
 </head>
