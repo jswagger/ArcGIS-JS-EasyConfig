@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Get started with SceneView - Create a 3D map</title>
-<style>
-  html, body, #viewDiv {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
-</style>
-<link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
-<script src="https://js.arcgis.com/4.4/"></script>
-<script>
-require([
-  "esri/Map",
-  "esri/views/SceneView",
-  "esri/layers/TileLayer",
-  "dojo/domReady!"
-], function(Map, SceneView){
-  var weatherLayer = new TileLayer({
-    url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
-  })
-  var map = new Map({
-    basemap: "streets",
-    ground: "world-elevation"
-	layers: [weatherLayer]
-  });
-  var view = new SceneView({
-    container: "viewDiv",     // Reference to the scene div created in step 5
-    map: map,                 // Reference to the map object created before the scene
-    scale: 50000000,          // Sets the initial scale to 1:50,000,000
-    center: [-101.17, 21.78]  // Sets the center point of view with lon/lat
-  });
-});
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Configurable 3D Map</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.4/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/MapImageLayer",
+        "dojo/domReady!"
+      ],
+      function(
+        Map, SceneView, MapImageLayer
+      ) {
+
+   
+        var weatherLayer = new MapImageLayer({
+         url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
+        });
+
+        var map = new Map({
+          basemap: "dark-gray",
+          layers: [permitsLyr]
+        });
+
+        var view = new SceneView({
+          container: "viewDiv",
+          map: map
+        });
+
+   
+       weatherLayer.then(function() {
+          view.goTo(weatherLayer.fullExtent);
+        });
+      });
+  </script>
 </head>
+
 <body>
   <div id="viewDiv"></div>
 </body>
+
 </html>
