@@ -1,6 +1,14 @@
 ﻿#viewDiv {
     padding: 0;
     margin: 0;
-    height: 100%;
+    height: 90%;
     width: 100%;
+}
+#topTitle {
+    height: 10%;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-family: Arial;
+    background-color: #022b59;
 }
