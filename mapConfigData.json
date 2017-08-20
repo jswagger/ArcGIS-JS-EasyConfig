@@ -1,0 +1,15 @@
+{
+  "Layer1": {
+    "name": "Weather",
+    "url": "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+  },
+  "Layer2": {
+    "name": "Contours",
+    "url": "https://services.nationalmap.gov/arcgis/rest/services/Contours/MapServer"
+  },
+  "Layer3": {
+    "name": "Public Places",
+    "url": "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+  }
+
+}

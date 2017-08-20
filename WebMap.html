@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
   <!--<link rel="stylesheet" href="C:\Users\StandardAdmin\Documents\GitHub\ArcGIS-JS-EasyConfig\WebMapStyle.css">-->
   <script src="https://js.arcgis.com/4.4/"></script>
+  <!--<script type="text/javascript" src="mapConfigData.json"></script>-->
   <!--<script src="C:\Users\StandardAdmin\Documents\"></script>-->
-  <!--<script src="C:\Users\StandardAdmin\Documents\GitHub\ArcGIS-JS-EasyConfig\WebMap.js"></script>-->
+  <!--<script src="C:\Users\StandardAdmin\Documents\GitHub\ArcGIS-JS-EasyConfig\WebMapTools.js"></script>-->
 
   <style>
     html,
@@ -35,17 +36,18 @@
         "dojo/domReady!"
       ],
     function(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList) {
-   
+
+        var configData = JSON.parse(mapConfigData);
         var weatherLayer = new MapImageLayer({
-		  url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
+		  url: configData.Layer1.url
         });
 		
 		var elevationLayer = new MapImageLayer({
-		  url: "https://services.nationalmap.gov/arcgis/rest/services/Contours/MapServer"
+            url: configData.Layer2.url
 		});
 		
 		var publicPlaces = new MapImageLayer({
-		  url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+            url: configData.Layer2.url
         });
 		
 		var featureLayer1 = new FeatureLayer({
