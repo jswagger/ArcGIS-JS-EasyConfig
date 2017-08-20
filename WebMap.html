@@ -24,10 +24,11 @@
         "esri/Map",
         "esri/views/SceneView",
         "esri/layers/MapImageLayer",
+		    "esri/widgets/BasemapToggle",
         "dojo/domReady!"
       ],
       function(
-        Map, SceneView, MapImageLayer
+        Map, SceneView, MapImageLayer, BasemapToggle
       ) {
 
    
@@ -37,18 +38,23 @@
 
         var map = new Map({
           basemap: "dark-gray",
-          layers: [permitsLyr]
+          layers: [weatherLayer]
         });
 
         var view = new SceneView({
           container: "viewDiv",
           map: map
         });
-
+		    var toggle = new BasemapToggle({
+          view: view, 
+          nextBasemap: "hybrid" 
+        });
    
-       weatherLayer.then(function() {
+        weatherLayer.then(function() {
           view.goTo(weatherLayer.fullExtent);
         });
+		
+		    view.ui.add(toggle, "top-right");
       });
   </script>
 </head>
