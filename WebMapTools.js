@@ -10,19 +10,21 @@
     "dojo/domReady!"
 ],
     function (Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList) {
+        var configData = readConfigFile("C:\Users\StandardAdmin\Documents\GitHub\ArcGIS - JS - EasyConfig\mapConfigData.json", function (text) {
+            return JSON.parse(text);
+        });
 
         var weatherLayer = new MapImageLayer({
-            url: "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
+            url: configData.Layer1.url
         });
 
         var elevationLayer = new MapImageLayer({
-            url: "https://services.nationalmap.gov/arcgis/rest/services/Contours/MapServer"
+            url: configData.Layer2.url
         });
 
         var publicPlaces = new MapImageLayer({
-            url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+            url: configData.Layer2.url
         });
-
         var featureLayer1 = new FeatureLayer({
             url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer/0"
         });
