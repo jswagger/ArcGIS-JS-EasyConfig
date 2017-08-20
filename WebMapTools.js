@@ -16,19 +16,8 @@
         var layersForMap = [];
         for (i = 0; i < configData.length; i++) {
             layersForMap += configData.mapLayers[i];
-        }
+        };
 
-        //var weatherLayer = new MapImageLayer({
-        //    url: configData.Layer1.url
-        //});
-
-        //var elevationLayer = new MapImageLayer({
-        //    url: configData.Layer2.url
-        //});
-
-        //var publicPlaces = new MapImageLayer({
-        //    url: configData.Layer2.url
-        //});
         var featureLayer1 = new FeatureLayer({
             url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer/0"
         });
