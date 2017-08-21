@@ -10,7 +10,7 @@
 	"dojo/domReady!"
 ],
 	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList) {
-
+		var layersForMap = [];
 		var configData = {}
 
 		loadJSON(function (response) {
@@ -18,15 +18,12 @@
 			configData = JSON.parse(response);
 		});
 
-		document.getElementById("topTitle").innerHTML = configData.appName;
+		document.getElementById("appTitle").innerHTML = configData.appName;
 
-		//var data = "\mapConfigData.json";
-		//var convertData = JSON.stringify(data);
-		//var configData = JSON.parse(convertData);
-
-		var layersForMap = [];
+		
 		for (i = 0; i < configData.mapLayers.length; i++) {
-			layersForMap += configData.mapLayers[i];
+			var newlayer = new MapImageLayer({ url:configData.mapLayers[i].url });
+			layersForMap.push(newlayer);
 		};
 
 		var featureLayer1 = new FeatureLayer({
