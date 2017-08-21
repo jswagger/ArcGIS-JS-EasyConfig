@@ -1,8 +1,11 @@
 ﻿#viewDiv {
+    background-color:aqua;
     padding: 0;
     margin: 0;
     height: 90%;
     width: 100%;
+    top: 50px;
+    position:absolute;
 }
 #topTitle {
     height: 10%;
@@ -14,8 +17,9 @@
 }
 #layerList {
     height: 500px;
-    width: 300px;
+    width: 0px;
     background-color: #808080;
+    z-index: 10;
 }
 #layerButton {
     left: 5px;
