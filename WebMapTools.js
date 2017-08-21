@@ -15,17 +15,17 @@
 
 		loadJSON(function (response) {
 			// Parse JSON string into object
-			var configData = JSON.parse(response);
+			configData = JSON.parse(response);
 		});
 
-
+		document.getElementById("topTitle").innerHTML = configData.appName;
 
 		//var data = "\mapConfigData.json";
 		//var convertData = JSON.stringify(data);
 		//var configData = JSON.parse(convertData);
 
 		var layersForMap = [];
-		for (i = 0; i < configData.length; i++) {
+		for (i = 0; i < configData.mapLayers.length; i++) {
 			layersForMap += configData.mapLayers[i];
 		};
 
@@ -35,7 +35,7 @@
 
 		var map = new Map({
 			basemap: "dark-gray",
-			layers: featureLayer1
+			layers: layersForMap
 		});
 
 		var view = new SceneView({
@@ -81,7 +81,7 @@ function loadJSON(callback) {
 
 	var xobj = new XMLHttpRequest();
 	//xobj.overrideMimeType("application/json");
-	xobj.open('GET', 'mapConfigData.json', true); // Replace 'my_data' with the path to your file
+	xobj.open('GET', 'mapConfigData.json', false); // Replace 'my_data' with the path to your file
 	xobj.onreadystatechange = function () {
 		if (xobj.readyState == 4 && xobj.status == "200") {
 			// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
