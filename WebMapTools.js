@@ -63,3 +63,6 @@
             position: "top-left"
         });
     });
+function openLayerList() {
+    document.getElementById("layerList").style.width = "300px";
+}

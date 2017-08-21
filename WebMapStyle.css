@@ -7,8 +7,39 @@
 #topTitle {
     height: 10%;
     width: 100%;
-    color: #fff;
-    text-align: center;
-    font-family: Arial;
     background-color: #022b59;
 }
+#appTitle {
+    text-align: center;
+}
+#layerList {
+    height: 500px;
+    width: 300px;
+    background-color: #808080;
+}
+#layerButton {
+    left: 5px;
+    top: 5px;
+    display: inline;
+    position: fixed;
+}
+.app-titles {
+    color: #fff;
+    font-family: Arial;
+}
+.app-button {
+    background-color: inherit;
+    color: #fff;
+    height: 40px;
+    width: 60px;
+    border-radius: 5px;
+    border: unset;
+}
+    .app-button:hover {
+        background-color: #034085;
+        box-shadow: 5px 5px 5px #01172f;
+    }
+    .app_button:active {
+        background-color: #034085;
+        border: solid 1px #808080;
+    }
