@@ -64,7 +64,7 @@
 		});
 		//map.add(featureLayer1);
 		view.ui.add(toggle, "bottom-left");
-		view.ui.add(legend, "bottom-right");
+		//view.ui.add(legend, "bottom-right");
 		view.ui.add(searchWidget, {
 			position: "top-right",
 			index: 2
@@ -74,8 +74,8 @@
 		});
 
 		var cam = new Camera({
-			heading: 0, 
-			tilt: 72, 
+			heading: 15, 
+			tilt: 48, 
 			position: configData.startView
 		});
 

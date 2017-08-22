@@ -13,9 +13,9 @@
     }
   ],
   "startView": {
-    "latitude": 27.5,
+    "latitude": 19.5,
     "longitude": -95.3,
-    "z": 100000,
+    "z": 1000000,
     "spatialReference": { "wkid": 3857 }
   }
 
