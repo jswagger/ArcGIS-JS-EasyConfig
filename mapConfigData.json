@@ -3,16 +3,20 @@
   "mapLayers": [
     {
       "name": "Weather",
-      "url": "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+      "url": "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
     },
     {
       "name": "Contours",
-      "url": "https://services.nationalmap.gov/arcgis/rest/services/Contours/MapServer"
-    },
-    {
-      "name": "Public Places",
-      "url": "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer"
+      "url": "https://services.nationalmap.gov/arcgis/rest/services/Contours/MapServer",
+      "listMode": "show",
+      "visible": "false"
     }
-  ]
+  ],
+  "startView": {
+    "latitude": 27.5,
+    "longitude": -95.3,
+    "z": 100000,
+    "spatialReference": { "wkid": 3857 }
+  }
 
 }

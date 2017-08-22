@@ -7,9 +7,10 @@
 	"esri/widgets/Legend",
 	"esri/widgets/Search",
 	"esri/widgets/LayerList",
+	"esri/Camera",
 	"dojo/domReady!"
 ],
-	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList) {
+	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Camera) {
 		var layersForMap = [];
 		var configData = {}
 
@@ -32,6 +33,7 @@
 
 		var map = new Map({
 			basemap: "dark-gray",
+			ground: "world-elevation",
 			layers: layersForMap
 		});
 
@@ -70,6 +72,14 @@
 		view.ui.add(layerList, {
 			position: "top-left"
 		});
+
+		var cam = new Camera({
+			heading: 0, 
+			tilt: 72, 
+			position: configData.startView
+		});
+
+		view.camera = cam;
 	});
 function openLayerList() {
 	document.getElementById("layerList").style.width = "300px";
