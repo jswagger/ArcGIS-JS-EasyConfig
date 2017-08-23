@@ -3,6 +3,13 @@
   "appName": "3D Map",
   "mapLayers": [
     {
+      "name": "Warnings",
+      "url": "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Forecasts_Guidance_Warnings/watch_warn_adv/MapServer",
+      "listMode": "show",
+      "visible": "true",
+      "opacity": 50
+    },
+    {
       "name": "Weather",
       "url": "https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/radar_base_reflectivity/MapServer"
     },
