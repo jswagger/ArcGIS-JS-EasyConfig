@@ -48,8 +48,12 @@
     .app-button:hover {
         background-color: #034085;
         box-shadow: 5px 5px 5px #01172f;
+        cursor: pointer;
     }
     .app_button:active {
         background-color: #034085;
         border: solid 1px #808080;
     }
+.visibility {
+    display: none;
+}

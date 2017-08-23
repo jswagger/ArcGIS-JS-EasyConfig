@@ -15,13 +15,10 @@
 		var configData = {}
 
 		loadJSON(function (response) {
-			// Parse JSON string into object
 			configData = JSON.parse(response);
 		});
 
-		document.getElementById("appTitle").innerHTML = configData.appName;
-
-		
+		$('#appTitle').text(configData.appName);
 		for (i = 0; i < configData.mapLayers.length; i++) {
 			var newlayer = new MapImageLayer({ url:configData.mapLayers[i].url });
 			layersForMap.push(newlayer);
@@ -58,19 +55,20 @@
 		var searchWidget = new Search({
 			view: view
 		});
-
-		var layerList = new LayerList({
+		var applayerList = new LayerList({
 			view: view
 		});
-		//map.add(featureLayer1);
+		view.ui.add(applayerList, {
+			position: "top-left"
+		});
+		
+		function toggleLayerList() {
+			$(".esri-layer-list").toggleClass('visibility');
+		};
 		view.ui.add(toggle, "bottom-left");
-		//view.ui.add(legend, "bottom-right");
 		view.ui.add(searchWidget, {
 			position: "top-right",
 			index: 2
-		});
-		view.ui.add(layerList, {
-			position: "top-left"
 		});
 
 		var cam = new Camera({
@@ -80,18 +78,14 @@
 		});
 
 		view.camera = cam;
+		$("#layerButton").click(toggleLayerList);
 	});
-function openLayerList() {
-	document.getElementById("layerList").style.width = "300px";
-}
 function loadJSON(callback) {
 
 	var xobj = new XMLHttpRequest();
-	//xobj.overrideMimeType("application/json");
-	xobj.open('GET', 'mapConfigData.json', false); // Replace 'my_data' with the path to your file
+	xobj.open('GET', 'mapConfigData.json', false);
 	xobj.onreadystatechange = function () {
 		if (xobj.readyState == 4 && xobj.status == "200") {
-			// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
 			callback(xobj.responseText);
 		}
 	};
