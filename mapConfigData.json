@@ -1,5 +1,6 @@
 {
-  "appName":  "3D Map",
+  "__appInstructions__": "Specify app title. Plug in URLs to map services. Specificy map, widget, and app preferences.",
+  "appName": "3D Map",
   "mapLayers": [
     {
       "name": "Weather",
