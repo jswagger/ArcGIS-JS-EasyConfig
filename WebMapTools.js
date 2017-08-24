@@ -65,6 +65,9 @@
 		function toggleLayerList() {
 			$(".esri-layer-list").toggleClass('visibility');
 		};
+		function toggleLegendList() {
+			$(".esri-legend").toggleClass('visibility');
+		};
 		view.ui.add(toggle, "bottom-left");
 		view.ui.add(searchWidget, {
 			position: "top-right",
@@ -78,7 +81,13 @@
 		});
 
 		view.camera = cam;
+		var legend = new Legend({
+			view: view
+		});
+
+		view.ui.add(legend, "bottom-right");
 		$("#layerButton").click(toggleLayerList);
+		$("#legendButton").click(toggleLegendList);
 	});
 function loadJSON(callback) {
 

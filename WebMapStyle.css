@@ -27,11 +27,10 @@
     background-color: #808080;
     z-index: 10;
 }
-#layerButton {
-    left: 5px;
-    top: 5px;
-    display: inline;
-    position: fixed;
+#layerButton, #legendButton {
+    margin-left: 5px;
+    margin-top: -32px;
+    float: left;
 }
 .app-titles {
     color: #fff;
@@ -54,6 +53,14 @@
         background-color: #034085;
         border: solid 1px #808080;
     }
-.visibility {
+.esri-layer-list {
     display: none;
 }
+.esri-legend {
+    display: none;
+}
+.visibility {
+    display: block;
+}
+
+
