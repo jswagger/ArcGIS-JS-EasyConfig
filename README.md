@@ -5,8 +5,6 @@ Check out a basic working example here: https://codepen.io/Jswag/pen/jLxjRm
 
 Planned Improvements:
 
-Add legend
-
 Add featureLayer capabilities
 
 Add pop up functionality
