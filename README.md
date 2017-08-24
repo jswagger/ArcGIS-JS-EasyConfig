@@ -5,8 +5,6 @@ Check out a basic working example here: https://codepen.io/Jswag/pen/jLxjRm
 
 Planned Improvements:
 
-Place Layerlist in div
-
 Add legend
 
 Add featureLayer capabilities
