@@ -43,15 +43,7 @@
 			view: view,
 			nextBasemap: "hybrid"
 		});
-
-		var legend = new Legend({
-			view: view,
-			layerInfos: [{
-				layer: featureLayer1,
-				title: "Public Places"
-			}]
-		});
-
+		
 		var searchWidget = new Search({
 			view: view
 		});
