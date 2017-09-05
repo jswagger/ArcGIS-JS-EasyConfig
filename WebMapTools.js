@@ -24,10 +24,6 @@
 			layersForMap.push(newlayer);
 		};
 
-		var featureLayer1 = new FeatureLayer({
-			url: "https://services.nationalmap.gov/arcgis/rest/services/structures/MapServer/0"
-		});
-
 		var map = new Map({
 			basemap: "dark-gray",
 			ground: "world-elevation",
@@ -47,37 +43,38 @@
 		var searchWidget = new Search({
 			view: view
 		});
+	 
 		var applayerList = new LayerList({
 			view: view
 		});
+	 
+	        var cam = new Camera({
+			heading: 15, 
+			tilt: 48, 
+			position: configData.startView
+		});
+	 
+	        var legend = new Legend({
+			view: view
+		});
+	 
 		view.ui.add(applayerList, {
 			position: "top-left"
 		});
-		
-		function toggleLayerList() {
-			$(".esri-layer-list").toggleClass('visibility');
-		};
-		function toggleLegendList() {
-			$(".esri-legend").toggleClass('visibility');
-		};
 		view.ui.add(toggle, "bottom-left");
 		view.ui.add(searchWidget, {
 			position: "top-right",
 			index: 2
 		});
-
-		var cam = new Camera({
-			heading: 15, 
-			tilt: 48, 
-			position: configData.startView
-		});
-
 		view.camera = cam;
-		var legend = new Legend({
-			view: view
-		});
-
 		view.ui.add(legend, "bottom-right");
+	 
+	        function toggleLayerList() {
+			$(".esri-layer-list").toggleClass('visibility');
+		};
+		function toggleLegendList() {
+			$(".esri-legend").toggleClass('visibility');
+		};
 		$("#layerButton").click(toggleLayerList);
 		$("#legendButton").click(toggleLegendList);
 	});
