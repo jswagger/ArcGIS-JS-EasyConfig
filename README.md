@@ -11,17 +11,17 @@ Check out a basic working example here: https://codepen.io/Jswag/pen/jLxjRm
     [
       {
         "name": Name of layer as a string
-        "url": Reference to the map service layer, ending ing "/MapServer"
+        "url": Reference to the map service layer, ending in "/MapServer"
         "listMode": Include "show" for layer(s) in map service to be listed in the layer list
         "visible": Include "true" to be visible
-        "opacity": Specify a number, leave at 0 if not transparency is desired
+        "opacity": Specify a number, leave at 0 if no transparency is desired
       }
     ],
     "startView": Specify the home/default location
     {
       "latitude": Coordinates in decimal degrees
       "longitude": Coordinates in decimal degrees
-      "z": Specify a number to control the zoom level to start with
+      "z": Specify a number to control the zoom level to start with (i.e. "10000")
       "spatialReference": Usually an object with wkid of 3857, but other wkids will work
       { "wkid": 3857 }
     }
