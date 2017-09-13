@@ -7,10 +7,11 @@
 	"esri/widgets/Legend",
 	"esri/widgets/Search",
 	"esri/widgets/LayerList",
+	"esri/widgets/Home",
 	"esri/Camera",
 	"dojo/domReady!"
 ],
-	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Camera) {
+	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
 		var layersForMap = [];
 		var configData = {}
 
@@ -20,7 +21,7 @@
 
 		$('#appTitle').text(configData.appName);
 		for (i = 0; i < configData.mapLayers.length; i++) {
-			var newlayer = new MapImageLayer({ url:configData.mapLayers[i].url });
+			var newlayer = new MapImageLayer({ url: configData.mapLayers[i].url });
 			layersForMap.push(newlayer);
 		};
 
@@ -39,25 +40,29 @@
 			view: view,
 			nextBasemap: "hybrid"
 		});
-		
+
 		var searchWidget = new Search({
 			view: view
 		});
-	 
+
 		var applayerList = new LayerList({
 			view: view
 		});
-	 
-	        var cam = new Camera({
-			heading: 15, 
-			tilt: 48, 
+
+		var cam = new Camera({
+			heading: 15,
+			tilt: 48,
 			position: configData.startView
 		});
-	 
-	        var legend = new Legend({
+
+		var legend = new Legend({
 			view: view
 		});
-	 
+
+		var homeWidget = new Home({
+			view: view
+		});
+
 		view.ui.add(applayerList, {
 			position: "top-left"
 		});
@@ -68,8 +73,9 @@
 		});
 		view.camera = cam;
 		view.ui.add(legend, "bottom-right");
-	 
-	        function toggleLayerList() {
+		view.ui.add(homeWidget, "top-right");
+
+		function toggleLayerList() {
 			$(".esri-layer-list").toggleClass('visibility');
 		};
 		function toggleLegendList() {
