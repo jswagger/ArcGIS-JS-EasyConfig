@@ -1,5 +1,6 @@
 ﻿body {
     margin: 0px;
+	outline: none;
 }
 #viewDiv {
     background-color: #808080;
@@ -31,7 +32,7 @@
     margin-left: 5px;
     margin-top: -32px;
     float: left;
-    outline: none;
+	outline: none;
 }
 .app-titles {
     color: #fff;
@@ -54,12 +55,15 @@
         background-color: #034085;
         border: solid 1px #808080;
     }
-.esri-layer-list {
+.esri-layer-list, .esri-legend {
     display: none;
 }
-.esri-legend {
-    display: none;
+.esri-widget {
+    opacity: .5;
 }
+    .esri-widget:hover {
+        opacity: 1;
+    }
 .visibility {
     display: block;
 }
