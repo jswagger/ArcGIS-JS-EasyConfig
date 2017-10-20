@@ -36,10 +36,12 @@
 			map: map
 		});
 
-		var toggle = new BasemapToggle({
-			view: view,
-			nextBasemap: "hybrid"
-		});
+		
+		var mapTools =  [{
+			tool: [],
+			pageLocation: []
+			}];
+		var toggleBasemap = createBasemap(BasemapToggle, view);
 
 		var searchWidget = new Search({
 			view: view
@@ -62,25 +64,8 @@
 		var homeWidget = new Home({
 			view: view
 		});
-
-		view.ui.add(applayerList, {
-			position: "top-left"
-		});
-		view.ui.add(toggle, "bottom-left");
-		view.ui.add(searchWidget, {
-			position: "top-right",
-			index: 2
-		});
-		view.camera = cam;
-		view.ui.add(legend, "bottom-right");
-		view.ui.add(homeWidget, "top-right");
-
-		function toggleLayerList() {
-			$(".esri-layer-list").toggleClass('visibility');
-		};
-		function toggleLegendList() {
-			$(".esri-legend").toggleClass('visibility');
-		};
+		
+		loadToolsToMap(view, applayerList, toggleBasemap, searchWidget, cam, legend, homeWidget);
 		$("#layerButton").click(toggleLayerList);
 		$("#legendButton").click(toggleLegendList);
 	});
@@ -94,4 +79,30 @@ function loadJSON(callback) {
 		}
 	};
 	xobj.send(null);
-}
+};
+function toggleLayerList() {
+	$(".esri-layer-list").toggleClass('visibility');
+};
+function toggleLegendList() {
+	$(".esri-legend").toggleClass('visibility');
+};
+function loadToolsToMap(view, applayerList, toggleBasemap, searchWidget, cam, legend, homeWidget) {
+	view.ui.add(applayerList, {
+		position: "top-left"
+	});
+	view.ui.add(toggleBasemap, "bottom-left");
+	view.ui.add(searchWidget, {
+		position: "top-right",
+		index: 2
+	});
+	view.camera = cam;
+	view.ui.add(legend, "bottom-right");
+	view.ui.add(homeWidget, "top-right");
+};
+function createBasemap(BasemapToggle, view) {
+	return new BasemapToggle({
+		view: view,
+		nextBasemap: "hybrid"
+	});
+};
+
