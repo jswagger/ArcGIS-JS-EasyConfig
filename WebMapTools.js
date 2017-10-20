@@ -20,57 +20,34 @@
 		});
 
 		$('#appTitle').text(configData.appName);
+
 		for (i = 0; i < configData.mapLayers.length; i++) {
 			var newlayer = new MapImageLayer({ url: configData.mapLayers[i].url });
 			layersForMap.push(newlayer);
 		};
 
-		var map = new Map({
-			basemap: "dark-gray",
-			ground: "world-elevation",
-			layers: layersForMap
-		});
+		var map = createMap(Map, view, layersForMap);
 
-		var view = new SceneView({
-			container: "viewDiv",
-			map: map
-		});
+		var view = createScene(SceneView, map);
 
-		
-		var mapTools =  [{
-			tool: [],
-			pageLocation: []
-			}];
 		var toggleBasemap = createBasemap(BasemapToggle, view);
 
-		var searchWidget = new Search({
-			view: view
-		});
+		var searchWidget = createSearch(Search, view);
 
-		var applayerList = new LayerList({
-			view: view
-		});
+		var applayerList = createLayerList(LayerList, view);
 
-		var cam = new Camera({
-			heading: 15,
-			tilt: 48,
-			position: configData.startView
-		});
+		var cam = createCam(Camera, view, configData.startView);
 
-		var legend = new Legend({
-			view: view
-		});
+		var legend = createLegend(Legend, view);
 
-		var homeWidget = new Home({
-			view: view
-		});
-		
-		loadToolsToMap(view, applayerList, toggleBasemap, searchWidget, cam, legend, homeWidget);
+		var homeWidget = createHome(Home, view);
+
+		loadToolsToMap(view, toggleBasemap, searchWidget, applayerList, cam, legend, homeWidget);
 		$("#layerButton").click(toggleLayerList);
 		$("#legendButton").click(toggleLegendList);
 	});
-function loadJSON(callback) {
 
+function loadJSON(callback) {
 	var xobj = new XMLHttpRequest();
 	xobj.open('GET', 'mapConfigData.json', false);
 	xobj.onreadystatechange = function () {
@@ -80,25 +57,22 @@ function loadJSON(callback) {
 	};
 	xobj.send(null);
 };
-function toggleLayerList() {
-	$(".esri-layer-list").toggleClass('visibility');
-};
-function toggleLegendList() {
-	$(".esri-legend").toggleClass('visibility');
-};
-function loadToolsToMap(view, applayerList, toggleBasemap, searchWidget, cam, legend, homeWidget) {
-	view.ui.add(applayerList, {
-		position: "top-left"
+
+function createMap(Map, view, layersForMap) {
+	return new Map({
+		basemap: "dark-gray",
+		ground: "world-elevation",
+		layers: layersForMap
 	});
-	view.ui.add(toggleBasemap, "bottom-left");
-	view.ui.add(searchWidget, {
-		position: "top-right",
-		index: 2
-	});
-	view.camera = cam;
-	view.ui.add(legend, "bottom-right");
-	view.ui.add(homeWidget, "top-right");
 };
+
+function createScene(SceneView, map) {
+	return new SceneView({
+		container: "viewDiv",
+		map: map
+	});
+};
+
 function createBasemap(BasemapToggle, view) {
 	return new BasemapToggle({
 		view: view,
@@ -106,3 +80,51 @@ function createBasemap(BasemapToggle, view) {
 	});
 };
 
+function createSearch(Search, view) {
+	return new Search({
+		view: view
+	});
+};
+
+function createLayerList(LayerList, view) {
+	return new LayerList({
+		view: view
+	});
+};
+
+function createCam(Camera, view, startView) {
+	return new Camera({
+		heading: 15,
+		tilt: 48,
+		position: startView
+	});
+};
+
+function createLegend(Legend, view) {
+	return new Legend({
+		view: view
+	});
+};
+
+function createHome(Home, view) {
+	return new Home({
+		view: view
+	});
+};
+
+function loadToolsToMap(view, applayerList, toggleBasemap, searchWidget, cam, legend, homeWidget) {
+	view.ui.add(applayerList, "top-left");
+	view.ui.add(toggleBasemap, "bottom-left");
+	view.camera = cam;
+	view.ui.add(legend, "bottom-right");
+	view.ui.add(homeWidget, "top-right");
+	view.ui.add(searchWidget, "top-right");
+};
+
+function toggleLayerList() {
+	$(".esri-layer-list").toggleClass('visibility');
+};
+
+function toggleLegendList() {
+	$(".esri-legend").toggleClass('visibility');
+};
