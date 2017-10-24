@@ -1,17 +1,17 @@
 describe("WebMap", function () {
 	var fakeWebMap;
 	beforeEach(function () {
-		fakeWebMap = new WebMap;
+		//fakeWebMap = jasmine.createSpyObj("WebMapTools", ["init"]);
 	});
 
-	describe("when initializing app", function () {
+	describe("init", function () {
 		it("should call createMap", function () {
-			fakeWebMap.init();
-			expect(fakeWebMap.createMap).toHaveBeenCalled();
+			webMap = initializeWebMap();
+			expect(createMap).toHaveBeenCalled();
 		});
 		it("should call createScene", function () {
-			fakeWebMap.init();
-			expect(fakeWebMap.createScene).toHaveBeenCalled();
+			webMap = init();
+			expect(createScene).toHaveBeenCalled();
 		});
 	});
 

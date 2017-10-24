@@ -11,7 +11,7 @@
 	"esri/Camera",
 	"dojo/domReady!"
 ],
-	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
+	function initializeWebMap(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
 		var layersForMap = [];
 		var configData = {}
 
