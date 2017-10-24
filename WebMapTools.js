@@ -11,7 +11,7 @@
 	"esri/Camera",
 	"dojo/domReady!"
 ],
-	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
+WebMap.init = function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
 		var layersForMap = [];
 		var configData = {}
 
@@ -58,7 +58,7 @@ function loadJSON(callback) {
 	xobj.send(null);
 };
 
-function createMap(Map, view, layersForMap) {
+WebMap.createMap = function (Map, view, layersForMap) {
 	return new Map({
 		basemap: "dark-gray",
 		ground: "world-elevation",

@@ -1,14 +1,17 @@
-describe("", function () {
-
+describe("WebMap", function () {
+	var fakeWebMap;
 	beforeEach(function () {
-
+		fakeWebMap = new WebMap;
 	});
 
-
-	describe("when calling createMap", function () {
-		it("should return a Map object", function () {
-
-
+	describe("when initializing app", function () {
+		it("should call createMap", function () {
+			fakeWebMap.init();
+			expect(fakeWebMap.createMap).toHaveBeenCalled();
+		});
+		it("should call createScene", function () {
+			fakeWebMap.init();
+			expect(fakeWebMap.createScene).toHaveBeenCalled();
 		});
 	});
 
