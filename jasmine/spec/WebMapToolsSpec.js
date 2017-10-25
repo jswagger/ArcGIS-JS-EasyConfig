@@ -5,13 +5,15 @@ describe("WebMap", function () {
 	});
 
 	describe("init", function () {
+		WebMap.init();
 		it("should call createMap", function () {
-			webMap = initializeWebMap();
+			
 			expect(createMap).toHaveBeenCalled();
 		});
+		
 		it("should call createScene", function () {
 			webMap = init();
-			expect(createScene).toHaveBeenCalled();
+			expect(Webmap.createScene).toHaveBeenCalled();
 		});
 	});
 

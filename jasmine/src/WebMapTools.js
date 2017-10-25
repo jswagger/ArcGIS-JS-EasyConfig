@@ -1,57 +1,62 @@
-﻿require([
-	"esri/Map",
-	"esri/views/SceneView",
-	"esri/layers/MapImageLayer",
-	"esri/layers/FeatureLayer",
-	"esri/widgets/BasemapToggle",
-	"esri/widgets/Legend",
-	"esri/widgets/Search",
-	"esri/widgets/LayerList",
-	"esri/widgets/Home",
-	"esri/Camera",
-	"dojo/domReady!"
-],
-	function initializeWebMap(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
-		var layersForMap = [];
-		var configData = {}
+﻿function WebMap() { }
 
-		loadJSON(function (response) {
-			configData = JSON.parse(response);
+
+WebMap.init = function () {
+	require([
+		"esri/Map",
+		"esri/views/SceneView",
+		"esri/layers/MapImageLayer",
+		"esri/layers/FeatureLayer",
+		"esri/widgets/BasemapToggle",
+		"esri/widgets/Legend",
+		"esri/widgets/Search",
+		"esri/widgets/LayerList",
+		"esri/widgets/Home",
+		"esri/Camera",
+		"dojo/domReady!"
+	],
+		function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
+			var layersForMap = [];
+			var configData = {}
+
+			loadJSON(function (response) {
+				configData = JSON.parse(response);
+			});
+
+			$('#appTitle').text(configData.appName);
+
+			for (i = 0; i < configData.mapLayers.length; i++) {
+				var newlayer = new MapImageLayer({ url: configData.mapLayers[i].url });
+				layersForMap.push(newlayer);
+			};
+
+			var map = createMap(Map, view, layersForMap);
+
+			var view = createScene(SceneView, map);
+
+			var toggleBasemap = createBasemap(BasemapToggle, view);
+
+			var searchWidget = createSearch(Search, view);
+
+			var applayerList = createLayerList(LayerList, view);
+
+			var cam = createCam(Camera, view, configData.startView);
+
+			var legend = createLegend(Legend, view);
+
+			var homeWidget = createHome(Home, view);
+
+			loadToolsToMap(view, toggleBasemap, searchWidget, applayerList, cam, legend, homeWidget);
+			$("#layerButton").click(toggleLayerList);
+			$("#legendButton").click(toggleLegendList);
 		});
-
-		$('#appTitle').text(configData.appName);
-
-		for (i = 0; i < configData.mapLayers.length; i++) {
-			var newlayer = new MapImageLayer({ url: configData.mapLayers[i].url });
-			layersForMap.push(newlayer);
-		};
-
-		var map = createMap(Map, view, layersForMap);
-
-		var view = createScene(SceneView, map);
-
-		var toggleBasemap = createBasemap(BasemapToggle, view);
-
-		var searchWidget = createSearch(Search, view);
-
-		var applayerList = createLayerList(LayerList, view);
-
-		var cam = createCam(Camera, view, configData.startView);
-
-		var legend = createLegend(Legend, view);
-
-		var homeWidget = createHome(Home, view);
-
-		loadToolsToMap(view, toggleBasemap, searchWidget, applayerList, cam, legend, homeWidget);
-		$("#layerButton").click(toggleLayerList);
-		$("#legendButton").click(toggleLegendList);
-	});
+};
 
 function loadJSON(callback) {
 	var xobj = new XMLHttpRequest();
 	xobj.open('GET', 'mapConfigData.json', false);
 	xobj.onreadystatechange = function () {
-		if (xobj.readyState === 4 && xobj.status === "200") {
+		if (xobj.readyState == 4 && xobj.status == "200") {
 			callback(xobj.responseText);
 		}
 	};
