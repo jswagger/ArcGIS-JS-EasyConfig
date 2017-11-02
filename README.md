@@ -25,8 +25,7 @@ Check out a basic working example here: https://codepen.io/Jswag/pen/jLxjRm
       "spatialReference": Usually an object with wkid of 3857, but other wkids will work
       { "wkid": 3857 }
     }
-  }
-
+  
 ### Planned Improvements:
 
 Add featureLayer capabilities
