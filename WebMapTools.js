@@ -11,8 +11,8 @@
 	"esri/Camera",
 	"dojo/domReady!"
 ],
-	function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
-		var layersForMap = [];
+function init(Map, SceneView, MapImageLayer, FeatureLayer, BasemapToggle, Legend, Search, LayerList, Home, Camera) {
+		
 		var configData = {}
 
 		loadJSON(function (response) {
@@ -21,10 +21,7 @@
 
 		$('#appTitle').text(configData.appName);
 
-		for (i = 0; i < configData.mapLayers.length; i++) {
-			var newlayer = new MapImageLayer({ url: configData.mapLayers[i].url });
-			layersForMap.push(newlayer);
-		};
+		var layersForMap = getMapLayers(configData, MapImageLayer);
 
 		var map = createMap(Map, view, layersForMap);
 
@@ -58,7 +55,17 @@ function loadJSON(callback) {
 	xobj.send(null);
 };
 
-function createMap(Map, view, layersForMap) {
+function getMapLayers(configData, MapImageLayer){
+	var layersForMap = []
+	for (i = 0; i < configData.mapLayers.length; i++) {
+			var newlayer = new MapImageLayer({ url: configData.mapLayers[i].url });
+			
+			layersForMap.push(newlayer);
+		};
+	return layersForMap;
+};
+
+createMap = function (Map, view, layersForMap) {
 	return new Map({
 		basemap: "dark-gray",
 		ground: "world-elevation",
