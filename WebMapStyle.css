@@ -32,7 +32,8 @@
     margin-left: 5px;
     margin-top: -32px;
     float: left;
-	outline: none;
+    outline: none;
+    transition: .2s;
 }
 .app-titles {
     color: #fff;
@@ -59,7 +60,8 @@
     display: none;
 }
 .esri-widget {
-    opacity: .5;
+    opacity: .9;
+    transition: .2s;
 }
     .esri-widget:hover {
         opacity: 1;
