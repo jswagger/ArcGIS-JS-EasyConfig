@@ -3,7 +3,7 @@ Create quick and easy implementations of the ArcGIS JavaScript 4.X API. Simply p
 
 First clone this repository to your localhost, then fill out the JSON config file. Once complete, try hitting "http://localhost/WebMap.html" in Chrome.
 
-Check out a basic working example here: https://codepen.io/Jswag/pen/jLxjRm
+Check out a basic working example here: https://jswagger.github.io/arcgis_easy_config/index.html
 ### Config Instructions:
 
     "appName": Specify name of the app as a string
